@@ -1,0 +1,14 @@
+from collections import Counter
+
+text = input()
+punctuation = "!,.?;:#$%^&*(),"
+processed_words = []
+for word in text.split():
+    cleaned = ''.join(ch for ch in word if ch not in punctuation).lower()
+    processed_words.append(cleaned)
+word_counts = Counter(processed_words)
+filtered_words = [
+    word for word, count in word_counts.items()
+    if len(word) >= 5 and len(set(word)) >= 4 and count > 2
+]
+print("\n".join(sorted(filtered_words)))
